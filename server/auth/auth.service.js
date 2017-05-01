@@ -3,6 +3,11 @@ import expressJwt from 'express-jwt';
 import pify from 'pify';
 import User from '../api/user/user.model';
 import createError from 'http-errors';
+
+if (!process.env.SESSION_SECRET) {
+  process.env.SESSION_SECRET = 'this secret is for prod on local machine only!';
+}
+
 const validateJwt = pify(expressJwt({secret: process.env.SESSION_SECRET}));
 
 export function isAuthenticated () {
@@ -40,3 +45,4 @@ export function isAdmin () {
 export function signToken (_id, expiresIn = '7d') {
   return jwt.sign({_id}, process.env.SESSION_SECRET, {expiresIn});
 }
+
