@@ -44,6 +44,11 @@ export default plop => {
         templateFile: 'plop/api/seed.hbs'
       },
       {
+        type: 'add',
+        path: '__tests__/server/api/{{name}}.spec.js',
+        templateFile: 'plop/api/spec.hbs'
+      },
+      {
         type: 'modify',
         path: 'server/config/express/routes.js',
         pattern: /(\/\/ inject:route-imports)/gi,

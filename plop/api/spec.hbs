@@ -1,0 +1,40 @@
+import request from 'supertest';
+import { {{#if auth}}started, {{/if}}close, server } from '../../../server/app';
+{{#if auth}}import {getAuthorizationHeader} from './auth.util';{{/if}}
+describe('{{properCase name}} api', () => {
+  {{#if auth}}
+  let authorizationToken;
+
+  beforeAll(() => {
+    return started
+      .then(() => getAuthorizationHeader())
+      .then(token => {
+        authorizationToken = token;
+      });
+  });
+  {{/if}}
+  afterAll(() => {
+    close();
+  });
+
+  describe('GET /api/{{plur name}}', () => {
+  {{#if auth}}
+    it('should fail if not authorized', () => {
+      return request(server)
+        .get('/api/{{plur name}}')
+        .expect(401);
+    });
+  {{/if}}
+    it('should get {{plur name}} array', () => {
+      return request(server)
+        .get('/api/{{plur name}}')
+        {{#if auth}}
+        .set('Authorization', authorizationToken)
+        {{/if}}
+        .expect(200)
+        .then(({body}) => {
+          expect(Array.isArray(body)).toBe(true);
+        });
+    });
+  });
+});
