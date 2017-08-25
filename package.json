@@ -1,7 +1,7 @@
 {
-  "name": "project-starter-sample",
+  "name": "starter",
   "version": "0.0.0",
-  "description": "a sample for the output of the project starter module",
+  "description": "",
   "main": "server/app.js",
   "scripts": {
     "test": "npm run lint && npm run jest",
@@ -26,20 +26,12 @@
     "client-dev-docker": "webpack-dev-server --host 0.0.0.0 --watch-poll",
     "server-dev-docker": "npm run server-dev -- -L"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/noamokman/project-starter-sample.git"
-  },
   "keywords": [],
+  "author": "",
+  "license": "ISC",
   "private": true,
-  "author": "Noam Okman <noamokman@gmail.com> (https://github.com/noamokman)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/noamokman/project-starter-sample/issues"
-  },
-  "homepage": "https://github.com/noamokman/project-starter-sample#readme",
   "engines": {
-    "node": ">=7"
+    "node": ">=8"
   },
   "lint-staged": {
     "*.js": [
