@@ -1,6 +1,6 @@
 import 'dotenv-extended/config';
 import {resolve} from 'path';
-import {HotModuleReplacementPlugin, optimize} from 'webpack';
+import {HotModuleReplacementPlugin, optimize, NamedModulesPlugin} from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MinifyPlugin from 'babel-minify-webpack-plugin';
 import PreloadWebpackPlugin from 'preload-webpack-plugin';
@@ -9,6 +9,7 @@ import CompressionPlugin from 'compression-webpack-plugin';
 export default env => {
   const plugins = [
     new HotModuleReplacementPlugin(),
+    new NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       template: './client/index.html'
     }),
@@ -35,7 +36,10 @@ export default env => {
 
   return {
     entry: {
-      main: './client/index.js',
+      main: [
+        'react-hot-loader/patch',
+        './client/index.js'
+      ],
       vendor: [
         'lodash',
         'react',
@@ -80,6 +84,7 @@ export default env => {
       port: 9090,
       inline: true,
       historyApiFallback: true,
+      hot: true,
       proxy: {
         '/api': {
           target: `http://localhost:${process.env.PORT}`
