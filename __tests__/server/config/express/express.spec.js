@@ -1,7 +1,6 @@
-const mockMorgan = jest.fn(() =>
-  (req, res, next) => {
-    next();
-  });
+const mockMorgan = jest.fn(() => (req, res, next) => {
+  next();
+});
 
 jest.mock('morgan', () => mockMorgan);
 
