@@ -8,5 +8,5 @@ const ClickableTitle = styled.span`
 `;
 
 export default ({home}) => (
-  <AppBar title={<ClickableTitle>{'Starter'}</ClickableTitle>} onTitleTouchTap={home} showMenuIconButton={false} iconElementRight={<AppBarActions />} />
+  <AppBar title={<ClickableTitle>{'Starter'}</ClickableTitle>} onTitleClick={home} showMenuIconButton={false} iconElementRight={<AppBarActions />} />
 );
